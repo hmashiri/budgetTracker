@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Budget Tracker</title>
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+<!-- endbower -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/styles/styles.css">
+<!-- endinject -->
+</head>
+
+<body class="ng-cloak" ng-app="myApp">
+
+<div ng-controller="MainController">
+	<div class="container">
+
+
+		<div class="col-xs-12 well">
+			<h1>Budget Tracker</h1>
+		</div>
+
+		<div class="row">
+
+			<div class="col-xs-6">	
+				<div class="panel panel-success">
+					
+					<div class="panel-heading">
+						<label>Income Entries</label>
+					</div>
+					
+					<div class="panel-body">
+						
+						<label>Description</label>
+						<input type="text" class="form-control form-group" ng-model="incomeDescriptionInput">
+						<label>Amount</label>
+						<div class="input-group form-group">
+	      					<div class="input-group-addon">$</div>
+	      					<input type="text" class="form-control" ng-model="incomeAmountInput">
+	      				</div>
+	      				<input class="btn btn-success form-group col-xs-12" ng-click="addIncomeItems()" type="button" value="+ Add Income"/>	
+	      			</div>	
+	      			
+	      			<div class="panel-body">
+	      				<table class="table col-xs-12">
+	      				<tr>
+	      					<td><b>Description</b></td>
+	      					<td class="text-right"><b>Amount</b></td>
+	      				</tr>
+	      				<tr ng-repeat="incomeItem in incomeItems">
+	      					<td>{{ incomeItem.description }}</td>
+	      					<td class="text-right">{{ incomeItem.amount }}
+	      					<a href="" ng-click="removeIncome(incomeItem)"><i class="fa fa-times fa-lg"></i></a>
+	      					</td>
+	      				
+	      				</tr>
+	      				</table>
+	      			</div>	
+
+				</div>
+			</div>
+
+
+			<div class="col-xs-6">	
+				<div class="panel panel-danger">
+					
+					<div class="panel-heading">
+						<label>Expense Entries</label>
+					</div>
+					
+					<div class="panel-body">
+						
+						<label>Description</label>
+						<input type="text" class="form-control form-group" ng-model="expenseDescriptionInput">
+						<label>Amount</label>
+						<div class="input-group form-group">
+	      					<div class="input-group-addon">$</div>
+	      					<input type="text" class="form-control" ng-model="expenseAmountInput">
+	      				</div>
+	      				<input class="btn btn-danger form-group col-xs-12" ng-click="addExpenseItems()" type="button" value="+ Add Expense"/>	
+	      			</div>
+	      			
+	      			<div class="panel-body">
+	      				<table class="table col-xs-12">
+	      				<tr>
+	      					<td><b>Description</b></td>
+	      					<td class="text-right"><b>Amount</b></td>
+	      				</tr>
+	      				<tr ng-repeat="expenseItem in expenseItems">
+	      					<td>{{ expenseItem.description }}</td>
+	      					<td class="text-right">{{ expenseItem.amount }}
+									<a href="" ng-click="removeExpense( expenseItem )"><i class="fa fa-times fa-lg"></i></a>
+								</td>	
+	      				</tr>
+	      				</table>
+	      			</div>
+
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="row">
+			
+			<div class="col-xs-offset-3 col-xs-6">	
+				<div class="panel panel-info">
+					
+					<div class="panel-heading">
+						<label>Summary</label>
+					</div>
+					
+					<div class="panel-body">
+						<div class="col-xs-12">
+							<label class="text-center col-xs-6">Total Income: {{ totalIncome() }}</label>
+							<label class="text-center col-xs-6">Total Expense: {{ totalExpense() }}</label>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+			
+	</div>
+</div>
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<!-- endbower -->
+
+
+<!-- inject:js -->
+<script src="/app/app.js"></script>
+<!-- endinject -->
+</body>
+</html>
